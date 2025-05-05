@@ -13,6 +13,11 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('/flights', 'FlightController@index');
+    $router->get('/flights/{id}', 'FlightController@show');
+    $router->get('/flights/search', 'FlightController@search');
+    $router->post('/flights', 'FlightController@store');
+    $router->put('/flights/{id}', 'FlightController@update');
+    $router->delete('/flights/{id}', 'FlightController@destroy');
 });
